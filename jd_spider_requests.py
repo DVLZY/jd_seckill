@@ -5,6 +5,7 @@ import functools
 import json
 import os
 import pickle
+import re
 
 from lxml import etree
 from jd_logger import logger
@@ -378,6 +379,7 @@ class JdSeckill(object):
             'Referer': 'https://item.jd.com/{}.html'.format(self.sku_id),
         }
         resp = self.session.get(url=url, params=payload, headers=headers)
+        logger.info('商品抢购时间为:{} 请填写到配置文件中'.format(re.compile('"qiangStime":"(.*?)"',re.S).findall(resp.text)[0].split(' ')[0]+' 09:59:59.500'))
         resp_json = parse_json(resp.text)
         reserve_url = resp_json.get('url')
         self.timers.start()
