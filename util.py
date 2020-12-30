@@ -86,9 +86,9 @@ def wait_some_time():
 
 def send_wechat(message):
     """推送信息到微信"""
-    url = 'http://sc.ftqq.com/{}.send'.format(global_config.getRaw('messenger', 'sckey'))
+    url = 'https://sctapi.ftqq.com/{}.send'.format(global_config.getRaw('messenger', 'sckey'))
     payload = {
-        "text":'抢购结果',
+        "title":'抢购结果',
         "desp": message
     }
     headers = {

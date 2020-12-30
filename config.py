@@ -3,7 +3,7 @@ import configparser
 
 
 class Config(object):
-    def __init__(self, config_file='config.ini'):
+    def __init__(self, config_file='config_lzy.ini'):
         self._path = os.path.join(os.getcwd(), config_file)
         if not os.path.exists(self._path):
             raise FileNotFoundError("No such file: config.ini")
@@ -19,4 +19,4 @@ class Config(object):
         return self._configRaw.get(section, name)
 
 
-global_config = Config()
+global_config: Config = Config()
